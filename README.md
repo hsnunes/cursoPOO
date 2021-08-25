@@ -24,6 +24,8 @@ Material referente ao Curso PHP - Programando com Orientração a Objetos.
         - Construtores e Destrutores;
         - Casting;
         - Relações;
+            - Associação;
+            - Composição;
         - Herança e Polimorfismo;
         - Abstração;
         - Encapsulamento;
