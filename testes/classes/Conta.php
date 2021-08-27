@@ -8,7 +8,7 @@ class Conta
 
     public function __construct($agencia, $conta, $saldo)
     {
-        $this->agencia = $agencia0;
+        $this->agencia = $agencia;
         $this->conta = $conta;
         if ($saldo > 0) {
             $this->saldo = $saldo;

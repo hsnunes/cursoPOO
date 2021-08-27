@@ -19,5 +19,10 @@ class ContaCorrente extends Conta
         {
             $this->saldo -= $quantia;
         }
+        else
+        {
+            return false;
+        }
+        return true;
     }
 }
