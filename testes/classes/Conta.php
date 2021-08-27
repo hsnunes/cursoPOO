@@ -36,4 +36,6 @@ abstract class Conta
     {
         return "Agencia: {$this->agencia} e Conta: {$this->conta}";
     }
+
+    abstract function retirar($quantia);
 }
