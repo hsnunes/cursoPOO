@@ -13,7 +13,7 @@ class ContaCorrente extends Conta
         $this->limite = $limite;
     }
 
-    public function retirar($quantia)
+    public final function retirar($quantia)
     {
         if ( ($this->saldo + $this->limite) >= $quantia )
         {
