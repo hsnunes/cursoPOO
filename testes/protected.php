@@ -2,7 +2,11 @@
 
 class Pessoa
 {
-    private $nome;
+    // PHP Notice:  Undefined property: Funcionario::$nome in protected.php on line 
+    // private $nome;
+
+    // protected pode ser editado pelas classes filhas
+    protected $nome;
 
     public function __construct($nome)
     {
