@@ -6,6 +6,7 @@ class Produto
     private $estoque;
     private $preco;
     private $fabricante;
+    private $caracteristica;
 
     public function __construct($descricao, $estoque, $preco)
     {
@@ -27,5 +28,15 @@ class Produto
     public function getFabricante()
     {
         return $this->fabricante;
+    }
+
+    public function addCaracteristica($nome, $valor)
+    {
+        $this->caracteristica[] = [$nome => $valor];
+    }
+
+    public function getCaracteristica()
+    {
+        return $this->addCaracteristica;
     }
 }
