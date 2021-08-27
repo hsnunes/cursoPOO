@@ -1,6 +1,11 @@
 <?php
 
-class Conta
+/**
+ * Classes Abstratas para não serem instanciadas, pois servem apenas de
+ * base/molde para classes filhas
+ */
+// 
+abstract class Conta
 {
     protected $agencia;
     protected $conta;
