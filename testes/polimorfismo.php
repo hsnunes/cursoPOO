@@ -16,5 +16,22 @@ foreach ($contas as $conta)
     if ($conta instanceof Conta)
     {
         print $conta->getInfo()."<br >";
+        print "-- Saldo Atual: {$conta->getSaldo()} <br >";
+
+        $conta->depositar(200);
+        print "- Deposito de R$ 200<br >";
+        print "-- Saldo Atual: {$conta->getSaldo()} <br >";
+
+        if ($conta->retirar(700))
+        {
+            print "- Retirda de R$ 700 OK<br >";
+        }
+        else
+        {
+            print "- Retirda de R$ 700 FAIL<br >";
+        }
+        print "-- Saldo Atual: {$conta->getSaldo()}<br >";
+        print '<br >';
+
     }
 }
