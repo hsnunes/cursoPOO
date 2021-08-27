@@ -13,6 +13,7 @@ class Produto
         $this->descricao = $descricao;
         $this->estoque = $estoque;
         $this->preco = $preco;
+        $this->caracteristica = [];
     }
 
     public function getDescricao()
@@ -32,7 +33,7 @@ class Produto
 
     public function addCaracteristica($nome, $valor)
     {
-        $this->caracteristica[] = [$nome => $valor];
+        $this->caracteristica[] = new Caracteristica( $nome, $valor );
     }
 
     public function getCaracteristica()
