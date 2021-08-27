@@ -38,6 +38,6 @@ class Produto
 
     public function getCaracteristica()
     {
-        return $this->addCaracteristica;
+        return $this->caracteristica;
     }
 }

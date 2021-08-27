@@ -5,7 +5,7 @@ class Caracteristica
     private $nome;
     private $valor;
 
-    public function construct( $nome, $valor)
+    public function __construct( $nome, $valor)
     {
         $this->nome = $nome;
         $this->valor = $valor;
