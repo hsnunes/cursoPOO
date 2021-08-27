@@ -6,11 +6,13 @@ class Conta
     protected $conta;
     protected $saldo;
 
-    public function __construct($ag, $conta, $saldo)
+    public function __construct($agencia, $conta, $saldo)
     {
-        $this->agencia = $ag;
+        $this->agencia = $agencia0;
         $this->conta = $conta;
-        $this->saldo = $saldo;
+        if ($saldo > 0) {
+            $this->saldo = $saldo;
+        }
     }
 
     public function depositar($quantia)
