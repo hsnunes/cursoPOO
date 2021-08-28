@@ -1,6 +1,6 @@
 <?php
 
-class Produto
+class ProdutoOrcavel implements OrcavelInterface
 {
     private $descricao;
     private $estoque;
