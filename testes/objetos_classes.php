@@ -25,3 +25,6 @@ print get_class( $elo ). '<br >';
 print get_parent_class( $elo ). '<br >';
 // chamado pelo nome da classe
 print get_parent_class( 'Estagiario' ). '<br >';
+
+// Verifica se uma classe é filha da classe passada, verificação
+print "E subclasse? ". (is_subclass_of( $elo, 'Funcionario' ) ? 'SIM' : 'NÃO'). '<br >';
