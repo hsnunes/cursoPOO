@@ -31,5 +31,6 @@ Material referente ao Curso PHP - Programando com Orientração a Objetos.
         - Polimorfismo;
         - Abstração;
         - Encapsulamento;
+        - Membros de Classe;
         - Acoplamento e Interfaces;
         - Design Patterns;
