@@ -19,4 +19,6 @@ $bru = new Funcionario;
 $elo = new Estagiario;
 
 print get_class( $bru ). '<br >';
-print get_class( $elo );
+print get_class( $elo ). '<br >';
+
+print get_parent_class( $elo ). '<br >';
