@@ -4,7 +4,7 @@ class Pessoa
 {
     private $nome;
     private $genero;
-    const GENEROS = ['M' => 'Masculino', 'F' => 'Feminino'];
+    private const GENEROS = ['M' => 'Masculino', 'F' => 'Feminino'];
 
     public function __construct($nome, $genero)
     {
@@ -36,4 +36,4 @@ print $p2->getNome() . '<br >';
 print $p2->getNomeGenero() . '<br >';
 
 // COmo da para acessar de qualquer lugar
-var_dump(Pessoa::GENEROS);
+// var_dump(Pessoa::GENEROS);
