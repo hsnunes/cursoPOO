@@ -9,7 +9,9 @@ try
 
     // foreach ($result as $row)
     // retornando um ojeto
-    while ( $row = $result->fetch(PDO::FETCH_OBJ) )
+    //while ( $row = $result->fetch(PDO::FETCH_OBJ) )
+    // Outra forma de chamada
+    while ( $row = $result->fetchObject() )
     {
         // var_dump($row);die;
         // print "{$row['id']} - {$row['nome']} <br >";
