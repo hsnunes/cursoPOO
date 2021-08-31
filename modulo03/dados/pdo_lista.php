@@ -7,10 +7,14 @@ try
 
     $result = $conn->query('SELECT * FROM famosos');
 
-    foreach ($result as $row)
+    // foreach ($result as $row)
+    // retornando um ojeto
+    while ( $row = $result->fetch(PDO::FETCH_OBJ) )
     {
         // var_dump($row);die;
-        print "{$row['id']} - {$row['nome']} <br >";
+        // print "{$row['id']} - {$row['nome']} <br >";
+        // Agora o row é usado como objeto
+        print "{$row->id} - {$row->nome} <br >";
     }
 
     // if ($result)
