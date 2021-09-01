@@ -14,8 +14,8 @@
             <h1 class="titleForm">Formulário de Cadastro de Pessoas</h1>
 
             <div class="control-form">
-                <label for="codigo">Código</label>
-                <input type="text" name="codigo" id="id" readonly="1" value="1">
+                <label for="id">Código</label>
+                <input type="text" name="id" id="id" readonly value="">
             </div>
             
             <div class="control-form">

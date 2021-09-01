@@ -20,13 +20,13 @@
         }
 
         ?>
-        <form action="pessoa_save_insert.php" method="post" enctype="multipart/form-data">
+        <form action="pessoa_save_update.php" method="post" enctype="multipart/form-data">
 
             <h1 class="titleForm">Formulário de Edição de Pessoas</h1>
 
             <div class="control-form">
-                <label for="codigo">Código</label>
-                <input type="text" name="codigo" id="id" readonly="<?=$row['id']?>" value="<?=$row['id']?>">
+                <label for="id">Código</label>
+                <input type="text" name="id" id="id" readonly="<?=$row['id']?>" value="<?=$row['id']?>">
             </div>
             
             <div class="control-form">
@@ -57,10 +57,9 @@
             <div class="control-form">
                 <label for="_id_cidade">Cidade</label>
                 <select name="id_cidade" id="cidade">
-                    <option selected>Selecione</option>
                     <?php
                         require "lista_combo_cidades.php";
-                        print lista_combo_cidades();
+                        print lista_combo_cidades($id);
                     ?>
                 </select>
             </div>

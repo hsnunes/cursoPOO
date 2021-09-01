@@ -1,7 +1,7 @@
 <?php
 
 
-function lista_combo_cidades()
+function lista_combo_cidades( $id_cidade )
 {
     $conn = mysqli_connect('127.0.0.1', 'root', 'root', 'cursopoo');
 
@@ -12,7 +12,8 @@ function lista_combo_cidades()
     {
         while($row = mysqli_fetch_assoc($result))
         {
-            $output .= "<option value='{$row['id']}'>{$row['nome']}</option>";
+            $check = $row['id'] == $id_cidade ? 'selected' : '';
+            $output .= "<option {$check} value='{$row['id']}'>{$row['nome']}</option>";
         }
     }
     $conn = null;
