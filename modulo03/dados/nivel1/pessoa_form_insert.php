@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="pessoa_save_insert.php" 0method="post" enctype="multipart/form-data">
+        <form action="pessoa_save_insert.php" method="post" enctype="multipart/form-data">
 
             <h1 class="titleForm">Formulário de Cadastro de Pessoas</h1>
 
