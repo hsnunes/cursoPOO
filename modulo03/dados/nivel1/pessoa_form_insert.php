@@ -49,7 +49,7 @@
                     <option selected>Selecione</option>
                     <?php
                         require "lista_combo_cidades.php";
-                        print lista_combo_cidades();
+                        print lista_combo_cidades(null);
                     ?>
                 </select>
             </div>
