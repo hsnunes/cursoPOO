@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -22,12 +23,19 @@
                     <?php
                         $conn = mysqli_connect('127.0.0.1', 'root', 'root', 'cursopoo');
 
+                        if ( !empty($_GET['action']) AND $_GET['action'] == 'delete' )
+                        {
+                            $id = (int) $_GET['id'];
+                            $result = mysqli_query($conn, "DELETE FROM pessoa WHERE id = {$id}");
+
+                        }
+
                         $result = mysqli_query($conn, "SELECT * FROM pessoa ORDER BY id");
                         while($row = mysqli_fetch_assoc($result))
                         {
                             print "<tr>";
-                            print "<td> <a href='pessoa_form_edit.php?id={$row['id']}'>Up</a> </td>";
-                            print "<td> <a href='pessoa_delete.php?id={$row['id']}'>Del</a> </td>";
+                            print "<td> <a href='pessoa_form.php?action=edit&id={$row['id']}'>Up</a> </td>";
+                            print "<td> <a href='pessoa_list.php?action=delete&id={$row['id']}'>Del</a> </td>";
                             print "<td>{$row['id']}</td>";
                             print "<td>{$row['nome']}</td>";
                             print "<td>{$row['endereco']}</td>";
@@ -35,10 +43,11 @@
                             print "<td>{$row['telefone']}</td>";
                             print "<tr>";
                         }
+                        $conn = null;
                     ?>
                 </tbody>
             </table>
-            <button onclick="window.location='pessoa_form_insert.php'" style="width:170px">
+            <button onclick="window.location='pessoa_form.php'" style="width:170px">
                 Inserir
             </button>
         </div>
