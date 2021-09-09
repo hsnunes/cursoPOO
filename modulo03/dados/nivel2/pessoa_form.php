@@ -11,19 +11,22 @@
     <div class="container">
         <?php
             $dd = $_REQUEST;
-            $id = ($_REQUEST['id']) ?? null;
+            $id = (int) ($_REQUEST['id']) ?? null;
             $nome = ($_REQUEST['nome']) ?? null;
             $endereco = ($_REQUEST['endereco']) ?? null;
             $bairro = ($_REQUEST['bairro']) ?? null;
             $telefone = ($_REQUEST['telefone']) ?? null;
             $email = ($_REQUEST['email']) ?? null;
             $id_cidade = ($_REQUEST['id_cidade']) ?? null;
+
+            $txtSubmit = 'Inserir';
         if (!empty($_REQUEST['action']))
         {
             $conn = mysqli_connect("127.0.0.1", 'root', 'root', 'cursopoo');
 
             if ($_REQUEST['action'] == 'edit')
             {
+                $txtSubmit = 'Atualizar';
                 if ( !empty($_REQUEST['id']) )
                 {
                     $id = (int) $_REQUEST['id'];
@@ -55,10 +58,13 @@
                 else
                 {
                     $sql = "UPDATE pessoa SET nome = '{$nome}', endereco = '{$endereco}', bairro = '{$bairro}',
-                                                telefone = '{$telefone}', email = '{$email}', id_cidade = '{$id_cidade}'";
+                                                telefone = '{$telefone}', email = '{$email}', id_cidade = '{$id_cidade}'
+                                                WHERE id = {$id}";
                     $result = mysqli_query($conn, $sql);
                 }
-                print ($result) ? 'Registro Salvo!' : 'Erro no Registro!';
+                header('Location: pessoa_list.php');
+                die;
+                // print ($result) ? 'Registro Salvo!' : 'Erro no Registro!';
             }
         }
         ?>
@@ -106,7 +112,9 @@
                 </select>
             </div>
 
-            <input type="submit" value="Atualizar">
+            <input type="submit" value="<?=$txtSubmit?>">
+
+            <a href="pessoa_list.php">Lista</a>
 
             <!-- <button type="submit">Gravar</button> -->
         </form>
