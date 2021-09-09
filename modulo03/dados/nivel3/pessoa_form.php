@@ -57,7 +57,6 @@
                 // print ($result) ? 'Registro Salvo!' : 'Erro no Registro!';
             }
         }
-        $id = 1;
         $formTpl = file_get_contents('formPessoa.html');
         $formTpl = str_replace('{id}', $id, $formTpl);
         $formTpl = str_replace('{nome}', $nome, $formTpl);
@@ -73,6 +72,6 @@
         
         $formTpl = str_replace('{cidades}', $cidades, $formTpl);
 
-        print_r($formTpl);die;
+        print $formTpl;
 
 
