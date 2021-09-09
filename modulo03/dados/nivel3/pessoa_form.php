@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edição de Pessoa</title>
-    <link rel="stylesheet" href="estilo.css">
-</head>
-<body>
-    <div class="container">
+
         <?php
             $dd = $_REQUEST;
             $id = (int) ($_REQUEST['id']) ?? null;
@@ -67,57 +57,22 @@
                 // print ($result) ? 'Registro Salvo!' : 'Erro no Registro!';
             }
         }
-        ?>
-        <form action="pessoa_form.php?action=save" method="post" enctype="multipart/form-data">
+        $id = 1;
+        $formTpl = file_get_contents('formPessoa.html');
+        $formTpl = str_replace('{id}', $id, $formTpl);
+        $formTpl = str_replace('{nome}', $nome, $formTpl);
+        $formTpl = str_replace('{endereco}', $endereco, $formTpl);
+        $formTpl = str_replace('{bairro}', $bairro, $formTpl);
+        $formTpl = str_replace('{telefone}', $telefone, $formTpl);
+        $formTpl = str_replace('{email}', $email, $formTpl);
+        $formTpl = str_replace('{id_cidade}', $id_cidade, $formTpl);
+        $formTpl = str_replace('{txtSubmit}', $txtSubmit, $formTpl);
 
-            <h1 class="titleForm">Formulário de Edição de Pessoas</h1>
+        require "lista_combo_cidades.php";
+        $cidades = lista_combo_cidades($id);
+        
+        $formTpl = str_replace('{cidades}', $cidades, $formTpl);
 
-            <div class="control-form">
-                <label for="id">Código</label>
-                <input type="text" name="id" id="id" readonly="<?=$id?>" value="<?=$id?>">
-            </div>
-            
-            <div class="control-form">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" id="nome" value="<?=$nome?>">
-            </div>
-            
-            <div class="control-form">
-                <label for="endereco">Endereço</label>
-                <input type="text" name="endereco" id="endereco" value="<?=$endereco?>">
-            </div>
-            
-            <div class="control-form">
-                <label for="codigo">Bairro</label>
-                <input type="text" name="bairro" id="bairro" value="<?=$bairro?>">
-            </div>
-            
-            <div class="control-form">
-                <label for="telefone">Telefone</label>
-                <input type="text" name="telefone" id="telefone" value="<?=$telefone?>">        
-            </div>
+        print_r($formTpl);die;
 
-            <div class="control-form">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" value="<?=$email?>">        
-            </div>
 
-            <div class="control-form">
-                <label for="_id_cidade">Cidade</label>
-                <select name="id_cidade" id="cidade">
-                    <?php
-                        require "lista_combo_cidades.php";
-                        print lista_combo_cidades($id);
-                    ?>
-                </select>
-            </div>
-
-            <input type="submit" value="<?=$txtSubmit?>">
-
-            <a href="pessoa_list.php">Lista</a>
-
-            <!-- <button type="submit">Gravar</button> -->
-        </form>
-    </div>
-</body>
-</html>
