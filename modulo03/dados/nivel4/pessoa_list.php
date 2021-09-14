@@ -1,35 +1,36 @@
 
     <?php
-        $conn = mysqli_connect('127.0.0.1', 'root', 'root', 'cursopoo');
+        // $conn = mysqli_connect('127.0.0.1', 'root', 'root', 'cursopoo');
+        require __DIR__ . '/db/pessoa_db.php';
 
         if ( !empty($_GET['action']) AND $_GET['action'] == 'delete' )
         {
             $id = (int) $_GET['id'];
-            $result = mysqli_query($conn, "DELETE FROM pessoa WHERE id = {$id}");
+            // $result = mysqli_query($conn, "DELETE FROM pessoa WHERE id = {$id}");
+            $result = exclui_pessoa($id);
 
         }
 
         /* Templates do programa */
         $listaTpl = file_get_contents('listPessoa.html');
 
+        // $result = mysqli_query($conn, "SELECT * FROM pessoa ORDER BY id");
+        $pessoas = lista_pessoa();
+        // print_r($pessoas);die;
         $linhas = '';
-        $result = mysqli_query($conn, "SELECT * FROM pessoa ORDER BY id");
-        while($row = mysqli_fetch_assoc($result))
+
+        if ($pessoas)
         {
-
-            //var_dump($row);die;
-            foreach ($row as $key => $value)
+            foreach($pessoas as $pessoa)
             {
-                // print $key . ' - '. $value;die;
                 $linha = file_get_contents('linha_pessoaList.html');
-                $linha = str_replace('{id}', $row['id'], $linha);
-                $linha = str_replace('{nome}', $row['nome'], $linha);
-                $linha = str_replace('{endereco}', $row['endereco'], $linha);
-                $linha = str_replace('{bairro}', $row['bairro'], $linha);
-                $linha = str_replace('{telefone}', $row['telefone'], $linha);
+                $linha = str_replace('{id}', $pessoa['id'], $linha);
+                $linha = str_replace('{nome}', $pessoa['nome'], $linha);
+                $linha = str_replace('{endereco}', $pessoa['endereco'], $linha);
+                $linha = str_replace('{bairro}', $pessoa['bairro'], $linha);
+                $linha = str_replace('{telefone}', $pessoa['telefone'], $linha);
+                $linhas .= $linha;
             }
-            $linhas .= $linha;
-
         }
 
         $conn = null;
