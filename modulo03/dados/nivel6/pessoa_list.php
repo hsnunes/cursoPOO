@@ -5,7 +5,6 @@
         require __DIR__ . '/classes/pessoa.php';
         require __DIR__ . '/classes/cidade.php';
 
-
         try
         {
 

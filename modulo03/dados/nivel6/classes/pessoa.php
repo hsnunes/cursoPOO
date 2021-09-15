@@ -9,7 +9,13 @@ class Pessoa
     {
         if (empty(self::$conn))
         {
-            self::$conn = new PDO('mysql:host=127.0.0.1;dbname=cursopoo', 'root', 'root');
+            $config = parse_ini_file('config/cursopoo.ini');
+            $host = $config['host'];
+            $dbname = $config['dbname'];
+            $user = $config['user'];
+            $pass = $config['pass'];
+
+            self::$conn = new PDO("mysql:host={$host};dbname={$dbname}", "{$user}", "{$pass}");
             self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         return self::$conn;
@@ -27,8 +33,7 @@ class Pessoa
 
     public static function delete($id)
     {
-        $conn = new PDO('mysql:host=127.0.0.1;dbname=cursopoo', 'root', 'root');
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = self::getConnect();
 
         $sql = "DELETE FROM pessoa WHERE id = {$id}";
         return $conn->query($sql);
@@ -36,8 +41,7 @@ class Pessoa
 
     public static function all()
     {
-        $conn = new PDO('mysql:host=127.0.0.1;dbname=cursopoo', 'root', 'root');
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = self::getConnect();
 
         $sql = "SELECT * FROM pessoa ORDER BY id";
         $result = $conn->query($sql);
@@ -46,12 +50,11 @@ class Pessoa
 
     public static function save($pessoa)
     {
-        $conn = new PDO('mysql:host=127.0.0.1;dbname=cursopoo', 'root', 'root');
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = self::getConnect();
 
         if (empty($pessoa['id']))
         {
-            $result = mysqli_query($conn, );
+            // $result = mysqli_query($conn, );
             $sql = "SELECT max(id) as next from pessoa";
             // $sql = "SELECT (max)id as next FROM pessoa";
             $rs = $conn->query($sql);
