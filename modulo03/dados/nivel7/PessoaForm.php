@@ -62,7 +62,16 @@ class PessoaForm
      */
     public function edit($param)
     {
-        # code...
+        try
+        {
+            $id = (int) $param['id'];
+            $this->data = Pessoa::find($id);
+
+        }
+        catch (\Exception $e)
+        {
+            print $e->getMessage();
+        }
     }
 
     /**
@@ -73,7 +82,16 @@ class PessoaForm
      */
     public function save($param)
     {
-        # code...
+        try
+        {
+            Pessoa::save($param);
+            $this->data = $param;
+            print "Pessoa cadastrada!";
+        }
+        catch (\Exception $e)
+        {
+            print $e->getMessage();
+        }
     }
 
     /**
@@ -83,6 +101,15 @@ class PessoaForm
      */
     public function show()
     {
+        $this->html = str_replace('{id}', $this->data['id'], $this->html);
+        $this->html = str_replace('{nome}', $this->data['nome'], $this->html);
+        $this->html = str_replace('{endereco}', $this->data['endereco'], $this->html);
+        $this->html = str_replace('{bairro}', $this->data['bairro'], $this->html);
+        $this->html = str_replace('{telefone}', $this->data['telefone'], $this->html);
+        $this->html = str_replace('{email}', $this->data['email'], $this->html);
+
+        $this->html = str_replace('{cidades}', $this->data['cidades'], $this->html);
+        
         print $this->html;
     }
 

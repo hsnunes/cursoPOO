@@ -1,8 +1,15 @@
 <?php
 
-
-
-
+/**
+ * Ativa o carregamento automático de Classes, que estiverem no mesmo diretorio
+ * Ou que esteja configuradas em outros diretorios
+ */
+spl_autoload_register( function($class) {
+    if ( file_exists( $class . ".php") )
+    {
+        require $class . ".php";
+    }
+});
 
 $classe = $_REQUEST['class'];
 $metodo = ($_REQUEST['method']) ?? null;
