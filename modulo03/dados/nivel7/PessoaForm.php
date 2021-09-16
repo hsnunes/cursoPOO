@@ -8,13 +8,13 @@ class PessoaForm
     /**
      * Atributo carrega o html da pagina a ser visualizada, iniciado no construtor
      *
-     * @html [string]
+     * @var [string]
      */
     private $html;
     /**
      * Atributo que carrega informações passadas;
      *
-     * @data [array]
+     * @var [array]
      */
     private $data;
 
@@ -24,7 +24,6 @@ class PessoaForm
      */
     public function __construct()
     {
-
         /**
          * inicia o html da pagina
          */
@@ -51,13 +50,14 @@ class PessoaForm
              */
             $cidades .= "<option value='{$cidade['id']}'>{$cidade['nome']}</option>";
         }
-        $this->data['cidades'] = $cidades;
+        $this->html = str_replace('{cidades}', $cidades, $this->html);
+
     }
 
     /**
      * edit: Prepara o formulário para edição do registro
      *
-     * @param [array] $param
+     * @var [type] $param
      * @return void
      */
     public function edit($param)
@@ -66,6 +66,10 @@ class PessoaForm
         {
             $id = (int) $param['id'];
             $this->data = Pessoa::find($id);
+
+            $this->html = str_replace( "option value='{$this->data['id_cidade']}'",
+                                        "option selected=1 value='{$this->data['id_cidade']}'",
+                                        $this->html );
 
         }
         catch (\Exception $e)
@@ -101,16 +105,16 @@ class PessoaForm
      */
     public function show()
     {
-        $this->html = str_replace('{id}', $this->data['id'], $this->html);
+
+        $this->html = str_replace('{id}', $this->data['id'], $this->html );
         $this->html = str_replace('{nome}', $this->data['nome'], $this->html);
         $this->html = str_replace('{endereco}', $this->data['endereco'], $this->html);
         $this->html = str_replace('{bairro}', $this->data['bairro'], $this->html);
         $this->html = str_replace('{telefone}', $this->data['telefone'], $this->html);
         $this->html = str_replace('{email}', $this->data['email'], $this->html);
 
-        $this->html = str_replace('{cidades}', $this->data['cidades'], $this->html);
-        
         print $this->html;
     }
 
 }
+                

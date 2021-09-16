@@ -21,7 +21,7 @@ if ( class_exists($classe) )
      */
     $pagina = new $classe($_REQUEST);
 
-    if ( !empty($method) AND method_exists($classe, $method) )
+    if ( !empty($metodo) AND method_exists($classe, $metodo) )
     {
         /**
          * alimenta o atributo metodo da class com o REQUEST
