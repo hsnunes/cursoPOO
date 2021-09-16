@@ -26,8 +26,9 @@ class Pessoa
 
         $conn = self::getConnect();
 
-        $sql = "SELECT * FROM pessoa WHERE id = {$id}";
-        $result = $conn->query($sql);
+        $sql = "SELECT * FROM pessoa WHERE id=:id";
+        $result = $conn->prepare($sql);
+        $result->execute([':id' => $id]);
         return $result->fetch();
     }
 
@@ -35,8 +36,9 @@ class Pessoa
     {
         $conn = self::getConnect();
 
-        $sql = "DELETE FROM pessoa WHERE id = {$id}";
-        return $conn->query($sql);
+        $sql = "DELETE FROM pessoa WHERE id=:id";
+        $result = $conn->prepare($sql);
+        $result->execute([':id' => $id]);
     }
 
     public static function all()
@@ -63,15 +65,24 @@ class Pessoa
             $pessoa['id'] = (int) $ln['next']+1;
 
             $sql = "INSERT INTO pessoa (id, nome, endereco, bairro, telefone, email, id_cidade)
-            VALUES ('{$pessoa['id']}', '{$pessoa['nome']}', '{$pessoa['endereco']}', '{$pessoa['bairro']}', '{$pessoa['telefone']}', '{$pessoa['email']}', '{$pessoa['id_cidade']}')";
+            VALUES (:id, :nome, :endereco, :bairro, :telefone, :email, :id_cidade)";
         }
         else
         {
-            $sql = "UPDATE pessoa SET nome = '{$pessoa['nome']}', endereco = '{$pessoa['endereco']}', bairro = '{$pessoa['bairro']}',
-            telefone = '{$pessoa['telefone']}', email = '{$pessoa['email']}', id_cidade = '{$pessoa['id_cidade']}'
-            WHERE id = {$pessoa['id']}";
+            $sql = "UPDATE pessoa SET nome = :nome, endereco = :endereco, bairro = :bairro,
+            telefone = :telefone, email = :email, id_cidade = :id_cidade
+            WHERE id = :id";
         }
-        return $conn->query($sql);
+        $result = $conn->prepare($sql);
+        $result->execute([
+            ':id' => $pessoa['id'],
+            ':nome' => $pessoa['nome'],
+            ':endereco' => $pessoa['endereco'],
+            ':bairro' => $pessoa['bairro'],
+            ':telefone' => $pessoa['telefone'],
+            ':email' => $pessoa['email'],
+            ':id_cidade' => $pessoa['id_cidade']
+        ]);
     }
 
 }
