@@ -66,6 +66,25 @@ Material referente ao Curso PHP - Programando com Orientração a Objetos.
         - Conexões e Segurança N6;
         - Classes de Controle N7;
 
+        nivel 1 ao 7
 
-        Nivel1
-        Nivel2
+- Modulo 04
+    Tratamento de Erros:
+        Proposta: Criar um programa para leituras de arquivos CSV.
+        E a partir dai aplicando o Tratamento;
+
+        Arquivo: exemplo cliente.csv
+            Cidade; Cliente; Telefone; Endereço; Idade; Sexo
+            Belem; Hsn; 223; Bomja 321; 44; M
+            Breves; Eloa; 322; Sao Rua 500; 11; F
+
+        Criação de um classe para manipulação desse arquivos
+        CSVParser.PHP
+        Pega os dados e retorna em vetor
+        3 metodos:
+            Construct - recebe as informações
+            parse - le os dados
+            fetch - retorna uma linha por vez, sempre que requisitado
+
+        
+        
