@@ -52,13 +52,17 @@ class CSVParser
         /**SE o arquivo não existir */
         if (!file_exists($this->filename))
         {
-            die("Arquivo {$this->filename} não existe");
+            // Não é uma boa pratica o die, em algumas situações
+            // die("Arquivo {$this->filename} não existe");
+            return false;
         }
 
         /** Se o arquivo não tiver permissão de leitura */
         if (is_readable($this->filename))
         {
-            die("Arquivo {$this->filename} sem permissão de leitura");
+            // Não é uma boa pratica o die, em algumas situações
+            // die("Arquivo {$this->filename} sem permissão de leitura");
+            return false;
         }
 
         /**
