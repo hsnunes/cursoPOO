@@ -2,7 +2,7 @@
 
 require __DIR__ . '/classes/CSVParser.php';
 
-$csv = new CSVParser('clientes.csv', ';');
+$csv = new CSVParser('clientesY.csv', ';');
 $csv->parse();
 
 echo '<pre>';

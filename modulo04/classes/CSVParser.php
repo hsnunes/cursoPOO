@@ -49,6 +49,18 @@ class CSVParser
      */
     public function parse()
     {
+        /**SE o arquivo não existir */
+        if (!file_exists($this->filename))
+        {
+            die("Arquivo {$this->filename} não existe");
+        }
+
+        /** Se o arquivo não tiver permissão de leitura */
+        if (is_readable($this->filename))
+        {
+            die("Arquivo {$this->filename} sem permissão de leitura");
+        }
+
         /**
          * Metodo file(); extrai as informações do arquivo e atribui
          * ao vetor data da classe
