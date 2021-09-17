@@ -54,15 +54,17 @@ class CSVParser
         {
             // Não é uma boa pratica o die, em algumas situações
             // die("Arquivo {$this->filename} não existe");
-            return false;
+            // return false;
+            throw new Exception("Arquivo {$this->filename} não encontrado");
         }
 
         /** Se o arquivo não tiver permissão de leitura */
-        if (is_readable($this->filename))
+        if (!is_readable($this->filename))
         {
             // Não é uma boa pratica o die, em algumas situações
             // die("Arquivo {$this->filename} sem permissão de leitura");
-            return false;
+            // return false;
+            throw new Exception("Arquivo {$this->filename} sem permissão");
         }
 
         /**
